@@ -204,6 +204,11 @@ with DAG(
             {"name": "load_date", "type": "DATE"},
         ],
         location="europe-west9",
+        time_partitioning={
+            "type": "DAY",
+            "field": "load_date",
+        },
+        cluster_fields=["country_code"],
     )
 
     check_data_quality = BigQueryCheckOperator(
